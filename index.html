@@ -1,0 +1,58 @@
+
+
+
+
+<script>
+    'use strict';
+
+
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            let options = {
+                type: 'popup',
+                responsive: true,
+                width:'150px',
+                innerScroll: true,
+                title: '',
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: '',
+                    click: function () {
+                        console.log("boton para cerrar la ventana")
+                        console.log("cuando cierra el popup")
+                        let popupHome = true
+                        if (popupHome === true){
+                        localStorage.setItem('popupHome', JSON.stringify(popupHome));
+                        console.log(localStorage.getItem('popupHome'));
+                        }
+                        
+                        this.closeModal();
+                    }
+                }]
+            };
+            console.log("se ejecuta fura del if" +localStorage.popupHome)
+            console.log(localStorage.popupHome === undefined + "tiene que ser falso");
+            if(localStorage.popupHome === undefined){
+            
+          const img = document.createElement("img");
+          img.src = "https://tiendaplotter.com/pub/media/weltpixel/owlcarouselslider/images/_/q/_quieres_recibir_una_gu_a_completa_sobre_plotters_totalmente_gratuita_2_.png";
+          img.id = "popup-modal";
+          document.body.appendChild(img);
+
+            console.log("esta activo")
+            modal(options, $('#popup-modal'));
+            
+           $('#popup-modal').modal('openModal');
+            }
+        }
+    );
+
+
+</script>
